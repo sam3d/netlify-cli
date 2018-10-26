@@ -5,7 +5,6 @@ const Command = require('../base')
 const SitesWatchCommand = require('./watch')
 const configManual = require('../utils/init/config-manual')
 const configGithub = require('../utils/init/config-github')
-const renderShortDesc = require('../utils/renderShortDescription')
 const getRepoData = require('../utils/getRepoData')
 const inquirer = require('inquirer')
 const SitesCreateCommand = require('./sites/create')
@@ -218,7 +217,7 @@ git remote add origin https://github.com/YourUserName/RepoName.git
   }
 }
 
-InitCommand.description = `${renderShortDesc('Configure continuous deployment for a new or existing site')}`
+InitCommand.description = `Configure continuous deployment for a new or existing site`
 
 InitCommand.flags = {
   manual: flags.boolean({
