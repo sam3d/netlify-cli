@@ -1,15 +1,51 @@
 const { flags } = require('@oclif/command')
 const Command = require('../../base')
 const renderShortDesc = require('../../utils/renderShortDescription')
+const inquirer = require("inquirer")
 
 class SitesRepoCommand extends Command {
     async run() {
-        await this.authenticate();
-
+        await this.authenticate()
         const { flags } = this.parse(SitesRepoCommand)
-        const { api, site, state } = this.netlify
 
+        if (flags.id) this.searchById(flags.id)
+        else if (flags.name) this.searchByName(flags.name)
+        else this.searchWithPrompt()
+    }
 
+    async searchById(id) {
+        console.log('Not implemented')
+    }
+
+    async searchByName(name) {
+        console.log('Not implemented')
+    }
+    
+    async searchWithPrompt() {
+        const { api, state } = this.netlify
+
+        const { type } = await inquirer.prompt({
+            name: 'type',
+            type: 'list',
+            message: 'How would you select the site to modify?',
+            choices: [
+                { name: 'Show a list the sites I have access to', value: 'list' },
+                { name: 'Use the name of the site', value: 'name' },
+                { name: 'Use the ID of the site', value: 'id' }
+            ]
+        })
+
+        if (type === 'list') {
+            console.log("Loading a list")
+        }
+
+        if (type === 'name') {
+            console.log('What is your name?')
+        }
+
+        if (type === 'id') {
+            console.log('What is the site ID?')
+        }
     }
 }
 
