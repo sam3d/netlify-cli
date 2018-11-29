@@ -24,7 +24,7 @@ SitesCommand.examples = [
   //'netlify sites:update --name my-new-site',
   //'netlify sites:delete --name my-new-site',
   'netlify sites:list',
-  'netlify sites:repo --name existing-site'
+  'netlify sites:repo --name my-site-name'
 ]
 
 module.exports = SitesCommand
