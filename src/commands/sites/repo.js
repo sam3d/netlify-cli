@@ -24,26 +24,26 @@ class SitesRepoCommand extends Command {
     async searchWithPrompt() {
         const { api, state } = this.netlify
 
+        const LIST_SITES = 'Show a list the sites I have access to'
+        const USE_NAME = 'Use the name of the site'
+        const USE_ID = 'Use the ID of the site'
+
         const { type } = await inquirer.prompt({
             name: 'type',
             type: 'list',
             message: 'How would you select the site to modify?',
-            choices: [
-                { name: 'Show a list the sites I have access to', value: 'list' },
-                { name: 'Use the name of the site', value: 'name' },
-                { name: 'Use the ID of the site', value: 'id' }
-            ]
+            choices: [LIST_SITES, USE_ID, USE_NAME]
         })
 
-        if (type === 'list') {
+        if (type === LIST_SITES) {
             console.log("Loading a list")
         }
 
-        if (type === 'name') {
+        if (type === USE_NAME) {
             console.log('What is your name?')
         }
 
-        if (type === 'id') {
+        if (type === USE_ID) {
             console.log('What is the site ID?')
         }
     }
